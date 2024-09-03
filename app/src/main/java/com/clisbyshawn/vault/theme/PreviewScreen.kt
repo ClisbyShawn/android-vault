@@ -1,7 +1,6 @@
-package com.clisbyshawn.vault.util
+package com.clisbyshawn.vault.theme
 
 import androidx.compose.runtime.Composable
-import com.clisbyshawn.vault.theme.VaultTheme
 
 
 @Composable
