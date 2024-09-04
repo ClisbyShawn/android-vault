@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Vault</string>
-    <string name="button_encryption_label">Encryption</string>
+    <string name="button_encryption_label">Encrypt</string>
     <string name="button_add_to_vault_label">Add to Vault</string>
+    <string name="button_go_to_vault_label">Go to Vault</string>
     <string name="text_field_enter_secret_message_label">Enter Secret Message</string>
 </resources>

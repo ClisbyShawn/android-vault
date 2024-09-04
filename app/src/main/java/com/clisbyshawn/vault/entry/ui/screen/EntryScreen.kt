@@ -20,10 +20,14 @@ import com.clisbyshawn.vault.theme.PreviewScreen
 fun EntryScreen(
     onEncryption: () -> Unit,
     onAddToVault: () -> Unit,
+    navigateToVault: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(
+            Dimens.defaultPadding,
+            Alignment.CenterVertically
+        ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column(
@@ -37,10 +41,21 @@ fun EntryScreen(
                     .padding(top = Dimens.defaultPadding),
                 horizontalArrangement = Arrangement.Absolute.SpaceEvenly
             ) {
-                InputButtonToVault(R.string.button_encryption_label, onEncryption)
-                InputButtonToVault(R.string.button_add_to_vault_label, onAddToVault)
+                InputButtonToVault(
+                    textId = R.string.button_encryption_label,
+                    onClick = onEncryption
+                )
+                InputButtonToVault(
+                    textId = R.string.button_add_to_vault_label,
+                    onClick = onAddToVault
+                )
             }
+
         }
+        InputButtonToVault(
+            textId = R.string.button_go_to_vault_label,
+            onClick = navigateToVault
+        )
     }
 }
 
@@ -49,6 +64,10 @@ fun EntryScreen(
 @Composable
 private fun Preview_EntryScreen() {
     PreviewScreen {
-        EntryScreen(onEncryption = {}, onAddToVault = {})
+        EntryScreen(
+            onEncryption = {},
+            onAddToVault = {},
+            navigateToVault = {}
+        )
     }
 }
