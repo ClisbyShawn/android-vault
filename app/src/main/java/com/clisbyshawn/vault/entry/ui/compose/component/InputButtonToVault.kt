@@ -10,8 +10,8 @@ import com.clisbyshawn.vault.theme.PreviewScreen
 
 @Composable
 fun InputButtonToVault(
-    @StringRes textId:Int,
-    onClick:() ->Unit
+    @StringRes textId: Int,
+    onClick: () -> Unit
 ) {
     Button(onClick = onClick) {
         Text(text = stringResource(textId))
@@ -24,7 +24,7 @@ fun InputButtonToVault(
 private fun Preview_InputButtonToVault() {
 
     PreviewScreen {
-        InputButtonToVault(0){}
+        InputButtonToVault(0) {}
     }
-    
+
 }
