@@ -7,10 +7,6 @@ import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -19,12 +15,13 @@ import com.clisbyshawn.vault.R
 import com.clisbyshawn.vault.theme.PreviewScreen
 
 @Composable
-fun InputTextFieldToVault() {
-    var text by remember { mutableStateOf("Hello Vault!!!") }
-
+fun InputTextFieldToVault(
+    text: String,
+    onTextChanged: (String) -> Unit
+) {
     OutlinedTextField(
         value = text,
-        onValueChange = { text = it },
+        onValueChange = onTextChanged,
         modifier = Modifier.fillMaxWidth(),
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Done
@@ -40,6 +37,6 @@ fun InputTextFieldToVault() {
 @Composable
 private fun Preview_InputToVault() {
     PreviewScreen {
-        InputTextFieldToVault()
+        InputTextFieldToVault(text = "", onTextChanged = {})
     }
 }
