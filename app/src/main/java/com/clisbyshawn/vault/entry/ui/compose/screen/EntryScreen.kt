@@ -13,23 +13,32 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.clisbyshawn.vault.R
 import com.clisbyshawn.vault.entry.ui.component.InputButtonToVault
 import com.clisbyshawn.vault.entry.ui.component.InputTextFieldToVault
+import com.clisbyshawn.vault.entry.ui.model.EntryScreenUiState
 import com.clisbyshawn.vault.theme.Dimens
 import com.clisbyshawn.vault.theme.PreviewScreen
 
 @Composable
 fun EntryScreen(
-    onEncryption: () -> Unit,
+    uiState: EntryScreenUiState,
     onAddToVault: () -> Unit,
+    onTextChanged: (String) -> Unit,
+    navigateToVault: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(
+            Dimens.defaultPadding,
+            Alignment.CenterVertically
+        ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column(
             modifier = Modifier.padding(horizontal = Dimens.defaultPadding)
         ) {
-            InputTextFieldToVault()
+            InputTextFieldToVault(
+                text = uiState.userMessageForVault,
+                onTextChanged = onTextChanged
+            )
 
             Row(
                 modifier = Modifier
@@ -37,8 +46,14 @@ fun EntryScreen(
                     .padding(top = Dimens.defaultPadding),
                 horizontalArrangement = Arrangement.Absolute.SpaceEvenly
             ) {
-                InputButtonToVault(R.string.button_encryption_label, onEncryption)
-                InputButtonToVault(R.string.button_add_to_vault_label, onAddToVault)
+                InputButtonToVault(
+                    textId = R.string.button_add_to_vault_label,
+                    onClick = onAddToVault
+                )
+                InputButtonToVault(
+                    textId = R.string.button_go_to_vault_label,
+                    onClick = navigateToVault
+                )
             }
         }
     }
@@ -49,6 +64,11 @@ fun EntryScreen(
 @Composable
 private fun Preview_EntryScreen() {
     PreviewScreen {
-        EntryScreen(onEncryption = {}, onAddToVault = {})
+        EntryScreen(
+            uiState = EntryScreenUiState(),
+            onAddToVault = {},
+            onTextChanged = {},
+            navigateToVault = {}
+        )
     }
 }
