@@ -38,7 +38,10 @@ fun MyAppNavHost(
         composable(route = Vault.route) {
             val viewModel: TheVaultViewModel = hiltViewModel()
             val uiState: VaultUiState by viewModel.uiState.collectAsStateWithLifecycle()
-            TheVault(uiState = uiState, onNavigateBack = { navController.popBackStack() })
+            TheVault(
+                uiState = uiState,
+                onDecode = viewModel::onDecodeText,
+                onNavigateBack = { navController.popBackStack() })
         }
     }
 

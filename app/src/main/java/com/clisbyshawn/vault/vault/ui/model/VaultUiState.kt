@@ -1,5 +1,6 @@
 package com.clisbyshawn.vault.vault.ui.model
 
 data class VaultUiState(
-    val hiddenItems: List<String> = emptyList()
+    val encryptedText: String? = null,
+    val decryptedText: String = ""
 )
